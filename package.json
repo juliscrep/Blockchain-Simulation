@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/cuchujero/tp_final_tyh2023/issues"
   },
-  "homepage": "https://github.com/cuchujero/tp_final_tyh2023#readme"
+  "homepage": "https://github.com/cuchujero/tp_final_tyh2023#readme",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
 }
