@@ -1,15 +1,22 @@
 const { v4: uuidv4 } = require('uuid');
 const TransactionAbstract = require('./TransactionAbstract');
-const crypto = require('crypto');
 
 class TransactionLeafAbstract extends TransactionAbstract {
 
-    constructor(holder,hashString,hashMethod) {
+    constructor(holder,hashMethod) {
+        if (new.target === TransactionLeafAbstract) {
+            throw new Error('TransactionLeafAbstract is an abstract class and could not be instantiated directly');
+        }
+        super();
         this.identifier = "TX-" + uuidv4();
         this.out = holder.getDigitalAddress();
-        this.hash = crypto.createHash(hashMethod).update(hashString).digest('hex');                
+        this.hasher = hashMethod;
     }
 
+    changeHashMethod(hashMethod) {
+        hasher = hashMethod;
+    }
+    
     getIdentifier() {
         return this.identifier;
     }
