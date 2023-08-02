@@ -3,26 +3,38 @@ const TransactionAbstract = require('./TransactionAbstract');
 class CompoundTransaction extends TransactionAbstract{
     constructor(){
         this.level = 0;
-        this.transactions=[];
+        this.transactions = [];
     }
 
-    addTransaction(transaction){ // arreglo de 3 transacciones 
-    
-        //si las transacciones son compuestas van a tener a su vez 3 transacciones mas 
-       
-        if(this.level==0) //seria el primer nivel 
-        {
-             //se deberia chequear que sea transaccion simple o coinbase para agregarse 
-
+    addTransaction(transaction){
+        if (this.transactions.length() >= 3) {
+            // las transacciones compuestas solo pueden tener hasta 3 transacciones
+            throw new Error('CompoundTransaction can only contain 3 transactions ');
         }
-    
+        else {
+            if (this.level == 0) {
+                if (transaction instanceof CompoundTransaction) {
+                    transaction.setLevel(this.level + 1);
+                }
+                this.transactions.push(transaction);
+            }
+            else {
+                // solo puedo agregar transacciones simples o coinbase o sea TransactionLeafAbstract
+                if (transaction instanceof TransactionLeafAbstract) {
+                    this.transactions.push(transaction);
+                } else {
+                    throw new Error('At this level you can only add CoinBase or Simple Transactions');
+                }
+            }
+        }    
+    }
+
+    setLevel(newLevel) {
+        this.level = newLevel;
     }
 
     getTransaction(){
-
     }
-
-
 }
 
 module.exports = CompoundTransaction;
