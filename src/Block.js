@@ -1,16 +1,23 @@
 const { v4: uuidv4 } = require('uuid');
-const crypto = require('crypto');
 
 class Block{
-    constructor(hashString,prevBlockhash,hashMethod){
+    constructor(timestamp,prevBlockhash,transactions, hashMethod){
         this.id= uuidv4();
-        this.timestamp=null; 
-        this.hash=crypto.createHash(hashMethod).update(hashString).digest('hex');
+        this.timestamp=timestamp; 
+        this.transactions=transactions; //es un arreglo de transacciones
         this.prevBlockhash=prevBlockhash;
-        this.hashMethod=hashMethod;  
-        
+        this.hasher = hashMethod;
     }
 
+    generateHash() {
+        let hashString = this.timestamp + this.transactions + this.prevBlockhash;
+        this.hash = this.hasher.hash(hashString);
+    }
+
+    changeHashMethod(hashMethod) {
+        this.hasher = hashMethod;
+    }
+     
     getId(){
         return this.id;
     }
@@ -36,6 +43,9 @@ class Block{
     }
 
     closeBlock(){
+
+        this.generateHash();
+        
         try{
              this.timestamp=new Date().getTime/1000;
              return true;
@@ -44,19 +54,10 @@ class Block{
             return false;
         }        
         
+        
     }
 
     broadcast(){
-
-    }
-
-    changeHashMethod(hashMethod){
-        this.hashMethod=hashMethod;
-
-    }
-
-    generateHash(hashString){
-        this.hash=crypto.createHash(this.hashMethod).update(hashString).digest('hex');
 
     }
 
