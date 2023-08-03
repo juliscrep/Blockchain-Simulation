@@ -4,9 +4,11 @@ const TransactionAbstract = require('./TransactionAbstract');
 class TransactionLeafAbstract extends TransactionAbstract {
 
     constructor(holder,hashMethod) {
+
         if (new.target === TransactionLeafAbstract) {
             throw new Error('TransactionLeafAbstract is an abstract class and could not be instantiated directly');
         }
+
         super();
         this.identifier = "TX-" + uuidv4();
         this.out = holder.getDigitalAddress();

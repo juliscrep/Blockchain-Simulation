@@ -1,12 +1,12 @@
 const { v4: uuidv4 } = require('uuid');
 
 class Block{
-    constructor(timestamp,prevBlockhash,transactions, hashMethod){
+    constructor(prevBlockhash, hashMethod){
         this.id= uuidv4();
-        this.timestamp=timestamp; 
-        this.transactions=transactions; //es un arreglo de transacciones
+        this.timestamp=null; 
         this.prevBlockhash=prevBlockhash;
         this.hasher = hashMethod;
+        this.transactions=[];
     }
 
     generateHash() {
@@ -38,23 +38,29 @@ class Block{
         return this.prevBlockhash;
     }
 
+    addTransactiontoBlock(transaction){
+        if (this.transactions.length==10){
+            throw new Error('Transactions limit has reach in this Block');
+        }
+        this.transactions.push(transaction);
+    }
+
     transactionQuantity(){
-        
+        let counter = this.transactions.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+        if (counter==10){
+            this.closeBlock();
+        }
     }
 
     closeBlock(){
-
-        this.generateHash();
-        
         try{
              this.timestamp=new Date().getTime/1000;
+             this.generateHash();
              return true;
         }
         catch{
             return false;
-        }        
-        
-        
+        }               
     }
 
     broadcast(){

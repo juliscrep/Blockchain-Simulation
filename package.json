@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/Playground.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/cuchujero/tp_final_tyh2023#readme",
   "dependencies": {
+    "jest": "^29.6.2",
     "jshashes": "^1.0.8",
     "uuid": "^9.0.0"
   }

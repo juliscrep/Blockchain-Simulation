@@ -1,18 +1,14 @@
 const { v4: uuidv4 } = require('uuid');
-const Block= require('./Block');
 
 class Node{
+    
     constructor(){
         this.id= uuidv4();
-        this.blockchain=[this.generateFirstBlock()];
+        this.blockchain=[];
     }
 
     getId(){
         return this.id;
-    }
-
-    generateFirstBlock(){
-        return new Block();
     }
 
     getLastBlock(){
@@ -21,7 +17,6 @@ class Node{
 
     addBlock(block){ 
         this.blockchain.push(block);
-
     }
 
 }

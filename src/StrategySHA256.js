@@ -7,7 +7,7 @@ class StrategySHA256 extends StrategyHashAbstract {
         this.strategy = new Hashes.SHA256;
     }
 
-    hash(data) {
+    generateHash(data) {
         return super.hash(data);
     }
 }

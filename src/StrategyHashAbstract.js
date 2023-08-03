@@ -5,7 +5,7 @@ class StrategyHashAbstract {
         }
     }
 
-    hash(data) {
+    generateHash(data) {
         return this.strategy.hex(data);
     }
 }

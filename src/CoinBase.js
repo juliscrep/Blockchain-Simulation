@@ -1,6 +1,7 @@
 const TransactionLeafAbstract = require('./TransactionLeafAbstract');
 
 class CoinBase extends TransactionLeafAbstract {
+    
     constructor(token,holder,hashMethod) {
         super(holder,hashMethod);
         this.tkn = token.getIdentifier();

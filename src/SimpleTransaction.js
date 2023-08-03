@@ -1,9 +1,9 @@
 const TransactionLeafAbstract = require('./TransactionLeafAbstract');
 
 class SimpleTransaction extends TransactionLeafAbstract {
-    constructor(intx,holder,hashMethod) {
+    constructor(TransactionLeafAbstract,holder,hashMethod) {
         super(holder,hashMethod);
-        this.in = intx.getIdentifier();
+        this.in = TransactionLeafAbstract.getIdentifier();
         this.generateHash();
     }
 

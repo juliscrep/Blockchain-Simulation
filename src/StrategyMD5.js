@@ -7,7 +7,7 @@ class StrategyMD5 extends StrategyHashAbstract {
         this.strategy = new Hashes.MD5;
     }
 
-    hash(data) {
+    generateHash(data) {
         return super.hash(data);
     }
 }
