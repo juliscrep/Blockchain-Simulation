@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/cuchujero/tp_final_tyh2023#readme",
   "dependencies": {
-    "jest": "^29.6.2",
     "jshashes": "^1.0.8",
     "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.6.2"
   }
 }
