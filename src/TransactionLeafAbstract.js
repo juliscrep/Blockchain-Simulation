@@ -2,9 +2,7 @@ const { v4: uuidv4 } = require('uuid');
 const TransactionAbstract = require('./TransactionAbstract');
 
 class TransactionLeafAbstract extends TransactionAbstract {
-
     constructor(holder,hashMethod) {
-
         if (new.target === TransactionLeafAbstract) {
             throw new Error('TransactionLeafAbstract is an abstract class and could not be instantiated directly');
         }
@@ -15,14 +13,18 @@ class TransactionLeafAbstract extends TransactionAbstract {
         this.hasher = hashMethod;
     }
 
+    generateHash(hashString) {
+        this.hash = this.hasher.generateHash(hashString);
+    }
+
     changeHashMethod(hashMethod) {
-        hasher = hashMethod;
+        this.hasher = hashMethod;
+        this.generateHash();
     }
     
     getIdentifier() {
         return this.identifier;
     }
-
 }
 
 module.exports = TransactionLeafAbstract;
