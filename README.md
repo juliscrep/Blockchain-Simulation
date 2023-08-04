@@ -1,18 +1,19 @@
-## TP final Técnicas y Herramientas de Software: Proyecto de simulación de blockchain
+## TP final Técnicas y Herramientas de Software:  <br> Proyecto de simulación de blockchain ##
 
-**Integrantes del grupo**
+####Integrantes####
 
 - Julieta Screpnik   julietascrepnik@gmail.com
 - Jeronimo Sola      cuchujero@hotmail.com
 - Raul Sanchez       fueguino84@gmail.com
 
+#### Comandos ####
 
-**Comandos para correr el proyecto**
+**Comandos para inicializar el proyecto **
 
 - npm install
 - npm start
 
-**Comando para correr tests**
+**Comando para ejecutar unidades de testeo**
 
 - npm run test
 
@@ -20,7 +21,7 @@
 
 - npm run testCoverage
 
-**Documentación**
+####Documentación####
 
 **Diagrama de clases**
 
@@ -28,9 +29,6 @@
 
 
 **Decisiones de diseño**
-
-
-**Patrones de diseño utilizados**
 
 Los patrones de diseño que elegimos fueron: Patrón Composite y Patrón Strategy.
 
@@ -41,4 +39,3 @@ Usamos el patrón Composite para definir los diferentes tipos de transacciones q
 Usamos el patrón Strategy para definir los mecanismos de generación y verificación de hash utilizando MD5 y SHA256 porque le permite al cliente elegir el mecanismo que mas le conviene en tiempo de ejecución y cambiarlo de manera dinamica segun se necesite. 
 
 ![alt text](https://i.postimg.cc/9MBSxFJd/Patron-Strategy.jpg)
-
