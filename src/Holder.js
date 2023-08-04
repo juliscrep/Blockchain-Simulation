@@ -13,14 +13,6 @@ class Holder{
     getProfileInformation(){
         return "Holder name:" + this.name + " - Holder email: " + this.email;
     }
-
-    getName(){
-        return "Holder name:" + this.name;
-    }
-
-    getEmail(){
-        return this.email;
-    }
     
     getDigitalAddress(){
         return this.digitalAddress;
