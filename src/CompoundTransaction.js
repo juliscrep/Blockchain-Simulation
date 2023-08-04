@@ -2,6 +2,7 @@ const TransactionAbstract = require('./TransactionAbstract');
 
 class CompoundTransaction extends TransactionAbstract{
     constructor(){
+        super();
         this.level = 0;
         this.transactions = [];
     }
