@@ -1,5 +1,5 @@
 const Hashes = require('jshashes');
-const StrategySHA256 = require('../src/StrategySHA256');
+const StrategySHA256 = require('../src/StrategySHA256.js');
 const crypto = require('crypto');
 
 let hasher;

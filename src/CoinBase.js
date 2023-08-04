@@ -3,13 +3,19 @@ const TransactionLeafAbstract = require('./TransactionLeafAbstract');
 class CoinBase extends TransactionLeafAbstract {
     constructor(token,holder,hashMethod) {
         super(holder,hashMethod);
+        this.token = token;
         this.tkn = token.getIdentifier();
-        this.generateHash();
+        this.generateTransactionHash();
     }
 
     generateTransactionHash() {
         let hashString = this.getIdentifier() + this.tkn + this.out;
-        super.generateHash(hashString);
+        super.generateTransactionHash(hashString);
+    }
+
+    changeHashMethod(hashMethod) {
+        super.changeHashMethod(hashMethod);
+        this.generateTransactionHash();
     }
 
     getTransaction() {

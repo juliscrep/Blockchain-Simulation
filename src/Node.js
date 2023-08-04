@@ -20,6 +20,10 @@ class Node{
         this.nodesConnected.push(node);
     }
 
+    getNodesAssociate(){
+        return this.nodesConnected;
+    }
+
     addBlockAssociate(block){ 
         this.blockchain.push(block);
     }

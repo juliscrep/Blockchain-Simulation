@@ -1,5 +1,5 @@
 const Hashes = require('jshashes');
-const StrategyMD5 = require('../src/StrategyMD5');
+const StrategyMD5 = require('../src/StrategyMD5.js');
 const crypto = require('crypto');
 
 let hasher;

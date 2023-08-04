@@ -1,5 +1,6 @@
-const Token = require('./../src/Token');
+const Token = require('./../src/Token.js');
 
+let tokenObjectTest1;
 let tokenObjectTest2;
 
 beforeEach(() => {
@@ -7,9 +8,9 @@ beforeEach(() => {
   tokenObjectTest2 = new Token();
 });
 
-describe('tests de clase token', () => {
+describe('Tests de clase token', () => {
 
-  test('creacion de token 1 de ejemplo exitosa', () => {
+  test('Creacion de token 1 de ejemplo exitosa', () => {
     expect(tokenObjectTest1.getIdentifier()).not.toBeNull();      
     expect(tokenObjectTest1.getIdentifier()).not.toEqual('');
     expect(tokenObjectTest1.getIdentifier().length).toBeGreaterThan(7);
@@ -17,7 +18,7 @@ describe('tests de clase token', () => {
     expect(tokenObjectTest1.getIdentifier()).toMatch('TKN');
   });
 
-  test('creacion de token 2 de ejemplo exitosa', () => {
+  test('Creacion de token 2 de ejemplo exitosa', () => {
     expect(tokenObjectTest2.getIdentifier()).not.toBeNull();      
     expect(tokenObjectTest2.getIdentifier()).not.toEqual('');
     expect(tokenObjectTest2.getIdentifier().length).toBeGreaterThan(7);

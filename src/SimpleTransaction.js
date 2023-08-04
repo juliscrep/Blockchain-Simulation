@@ -1,21 +1,20 @@
 const TransactionLeafAbstract = require('./TransactionLeafAbstract');
 
 class SimpleTransaction extends TransactionLeafAbstract {
-    
     constructor(TransactionLeafAbstract,holder,hashMethod) {
         super(holder,hashMethod);
         this.in = TransactionLeafAbstract.getIdentifier();
-        this.generateHash();
+        this.generateTransactionHash();
     }
 
     generateTransactionHash() {
         let hashString = this.getIdentifier() + this.in + this.out;
-        super.generateHash(hashString);
+        super.generateTransactionHash(hashString);
     }
 
     changeHashMethod(hashMethod) {
         super.changeHashMethod(hashMethod);
-        this.generateHash();
+        this.generateTransactionHash();
     }
 
     getTransaction() {
