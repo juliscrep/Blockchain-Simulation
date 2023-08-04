@@ -8,7 +8,7 @@ class StrategyMD5 extends StrategyHashAbstract {
     }
 
     generateHash(data) {
-        return super.hash(data);
+        return super.generateHash(data);
     }
 }
 
