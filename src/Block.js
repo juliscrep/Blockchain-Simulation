@@ -1,21 +1,15 @@
 const { v4: uuidv4 } = require('uuid');
 
 class Block{
-    constructor(prevBlockhash, hashMethod){
+
+    constructor(hashMethod, node= null, prevBlock = null){
         this.id= uuidv4();
+        this.hash=null;
         this.timestamp=null; 
-        this.prevBlockhash=prevBlockhash;
         this.hasher = hashMethod;
+        this.nodeAssociate= node ? node : null;
+        this.prevBlockhash= prevBlock ? prevBlock.getHash() : null;
         this.transactions=[];
-    }
-
-    generateHash() {
-        let hashString = this.timestamp + this.transactions + this.prevBlockhash;
-        this.hash = this.hasher.hash(hashString);
-    }
-
-    changeHashMethod(hashMethod) {
-        this.hasher = hashMethod;
     }
      
     getId(){
@@ -31,40 +25,79 @@ class Block{
     }
 
     getHashMethod(){
-       return this.hashMethod;
+       return this.hasher;
     }
     
     getPrevBlockHash(){
         return this.prevBlockhash;
     }
 
-    addTransactiontoBlock(transaction){
-        if (this.transactions.length==10){
-            throw new Error('Transactions limit has reach in this Block');
-        }
-        this.transactions.push(transaction);
+    getNodeAssociate(){
+        return this.nodeAssociate;
     }
 
-    transactionQuantity(){
-        let counter = this.transactions.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-        if (counter==10){
-            this.closeBlock();
+    setNodeAssociate(node){
+        this.nodeAssociate=node;
+    }
+
+    changeHashMethod(hashMethod) {
+        this.hasher = hashMethod;
+    }
+
+    generateBlockHash() {
+        let transactionsHash="";
+        
+        for (let transactionObject of this.transactions){
+            transactionsHash += this.hasher.generateHash(transactionObject.getIdentifier());
         }
+
+        let pbAux = this.prevBlockhash? this.prevBlockhash : "";
+        this.hash = this.hasher.generateHash(this.timestamp + pbAux + transactionsHash);
+    }
+
+    getBlockInformation(){
+        let taux="";
+        for (let transactionObject of this.transactions){
+            taux+=transactionObject.getIdentifier() + "\n";
+        }
+        let bchain = "-------------------------------------"  + "\n\n";
+        bchain += "Block: " + this.getId() + "\n" + "timestamp: " + this.getTimestamp() + "\n\n" + "Transactions" + "\n\n" + taux + "\n" + "hash: " + this.getHash() + "\n" + "prev: " + this.getPrevBlockHash() + "\n\n";
+        bchain += "-------------------------------------"  + "\n\n";
+        return bchain;
+    }
+    
+    broadcast(){
+        this.nodeAssociate.addBlockAssociate(this);
+        this.nodeAssociate.updateBlockinNodesConnected(this);
     }
 
     closeBlock(){
         try{
-             this.timestamp=new Date().getTime/1000;
-             this.generateHash();
-             return true;
+             this.timestamp= Math.floor(Date.now() / 1000);
+             this.generateBlockHash();
+             this.broadcast();
         }
         catch{
-            return false;
+            throw new Error('Error al intentar cerrar el bloque');
         }               
     }
 
-    broadcast(){
+    addTransactiontoBlock(transaction){
 
+        if (this.transactions.length==10){
+            throw new Error('Las transacciones han llegado al limite establecido en este bloque');
+        }
+
+        this.transactions.push(transaction);
+
+        if (this.transactions.length==10){
+                this.closeBlock();
+                return 'Block close';
+        }
+    }
+
+    getTransactionQuantity(){
+        return this.transactions.length;
     }
 
    

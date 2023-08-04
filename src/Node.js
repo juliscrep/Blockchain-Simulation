@@ -3,8 +3,9 @@ const { v4: uuidv4 } = require('uuid');
 class Node{
     
     constructor(){
-        this.id= uuidv4();
+        this.id = uuidv4();
         this.blockchain=[];
+        this.nodesConnected=[];
     }
 
     getId(){
@@ -14,9 +15,29 @@ class Node{
     getLastBlock(){
         return this.blockchain[this.blockchain.length - 1]
     }
+    
+    addNodeAssociate(node){ 
+        this.nodesConnected.push(node);
+    }
 
-    addBlock(block){ 
+    addBlockAssociate(block){ 
         this.blockchain.push(block);
+    }
+
+    updateBlockinNodesConnected(block){
+        if (this.nodesConnected.length>0){
+            for (let nodeObject of this.nodesConnected){
+                nodeObject.addBlockAssociate(block);
+            }
+        }
+    }
+
+    getBlockChainData(){
+        let bchain="";
+        for (let blockObject of this.blockchain){
+            bchain += blockObject.getBlockInformation();
+        }
+        return bchain;
     }
 
 }
