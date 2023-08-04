@@ -13,6 +13,10 @@ Comando para correr tests
 
 - npm run test
 
+Comando para obtener cobertura de tests
+
+- npm run testCoverage
+
 Documentación
 
 Diagrama de clases

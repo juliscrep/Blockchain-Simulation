@@ -4,9 +4,9 @@ class Block{
 
     constructor(hashMethod, node=null, prevBlock=null){
         this.id= uuidv4();
-        this.hash=null;
         this.timestamp=null; 
         this.hasher = hashMethod;
+        this.hash=null;
         this.nodeAssociate= node? node : null;
         this.prevBlock= prevBlock? prevBlock : null;
         this.transactions=[];
@@ -31,6 +31,10 @@ class Block{
     getPrevBlockHash(){
         return this.prevBlock? this.prevBlock.getHash() : null
     }
+    
+    changeHashMethod(hashMethod) {
+        this.hasher = hashMethod;
+    }
 
     getNodeAssociate(){
         return this.nodeAssociate;
@@ -38,10 +42,6 @@ class Block{
 
     setNodeAssociate(node){
         this.nodeAssociate=node;
-    }
-
-    changeHashMethod(hashMethod) {
-        this.hasher = hashMethod;
     }
 
     generateBlockHash() {
@@ -92,8 +92,10 @@ class Block{
 
         if (this.transactions.length==10){
                 this.closeBlock();
-                return 'Block close';
+                return 'Transaccion agregada a bloque. Bloque cerrado';
         }
+
+        return 'Transaccion agregada a bloque';
     }
 
     getTransactionQuantity(){

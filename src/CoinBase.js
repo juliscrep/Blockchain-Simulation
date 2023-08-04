@@ -12,14 +12,14 @@ class CoinBase extends TransactionLeafAbstract {
         let hashString = this.getIdentifier() + this.tkn + this.out;
         super.generateTransactionHash(hashString);
     }
+    
+    getTransaction() {
+        return "Coinbase | TX:" + this.identifier + " - Token: " + this.tkn + " - OUT: " + this.out + " - Hash: " + this.hash;
+    }
 
     changeHashMethod(hashMethod) {
         super.changeHashMethod(hashMethod);
         this.generateTransactionHash();
-    }
-
-    getTransaction() {
-        return "Coinbase | TX:" + this.identifier + " - Token: " + this.tkn + " - OUT: " + this.out + " - Hash: " + this.hash;
     }
 }
 

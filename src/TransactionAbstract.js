@@ -9,7 +9,7 @@ class TransactionAbstract{
         this.Block=Block;
     }
 
-    getBlockAssociate(){
+    getIdBlockAssociate(){
         return this.Block.getId();
     }
 }

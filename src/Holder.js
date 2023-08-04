@@ -8,15 +8,25 @@ class Holder{
         this.email=email;
         this.password=password;
         this.digitalAddress='A-'+uuidv4();
+        this.transactions = [];
     }
 
+    getDigitalAddress(){
+        return this.digitalAddress;
+    }
+
+    getHolderTransactions(){
+        return this.transactions;
+    }
+    
+    addTransactionstoHolder(transaction){
+        this.transactions.push(transaction);
+    }
+    
     getProfileInformation(){
         return "Holder name:" + this.name + " - Holder email: " + this.email;
     }
     
-    getDigitalAddress(){
-        return this.digitalAddress;
-    }
 }
 
 module.exports = Holder;

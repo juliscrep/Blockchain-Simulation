@@ -13,17 +13,17 @@ class TransactionLeafAbstract extends TransactionAbstract {
         this.out = holder.getDigitalAddress();
         this.hasher = hashMethod;
     }
-
-    generateTransactionHash(hashString) {
-        this.hash = this.hasher.generateHash(hashString);
+    
+    getIdentifier() {
+        return this.identifier;
     }
 
     changeHashMethod(hashMethod) {
         this.hasher = hashMethod;
     }
     
-    getIdentifier() {
-        return this.identifier;
+    generateTransactionHash(hashString) {
+        this.hash = this.hasher.generateHash(hashString);
     }
 }
 
