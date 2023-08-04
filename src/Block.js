@@ -2,13 +2,13 @@ const { v4: uuidv4 } = require('uuid');
 
 class Block{
 
-    constructor(hashMethod, node= null, prevBlock = null){
+    constructor(hashMethod, node=null, prevBlock=null){
         this.id= uuidv4();
         this.hash=null;
         this.timestamp=null; 
         this.hasher = hashMethod;
-        this.nodeAssociate= node ? node : null;
-        this.prevBlockhash= prevBlock ? prevBlock.getHash() : null;
+        this.nodeAssociate= node? node : null;
+        this.prevBlock= prevBlock? prevBlock : null;
         this.transactions=[];
     }
      
@@ -29,7 +29,7 @@ class Block{
     }
     
     getPrevBlockHash(){
-        return this.prevBlockhash;
+        return this.prevBlock? this.prevBlock.getHash() : null
     }
 
     getNodeAssociate(){
@@ -51,7 +51,7 @@ class Block{
             transactionsHash += this.hasher.generateHash(transactionObject.getIdentifier());
         }
 
-        let pbAux = this.prevBlockhash? this.prevBlockhash : "";
+        let pbAux = this.prevBlock? this.prevBlock.getHash() : "";
         this.hash = this.hasher.generateHash(this.timestamp + pbAux + transactionsHash);
     }
 
