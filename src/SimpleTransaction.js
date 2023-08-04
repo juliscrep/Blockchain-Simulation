@@ -10,7 +10,7 @@ class SimpleTransaction extends TransactionLeafAbstract {
 
     generateTransactionHash() {
         let hashString = this.getIdentifier() + this.in + this.out;
-        this.hash = this.hasher.generateHash(hashString);
+        super.generateHash(hashString);
     }
 
     changeHashMethod(hashMethod) {
