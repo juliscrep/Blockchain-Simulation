@@ -1,8 +1,4 @@
-# tp_final_tyh2023
-
-Descripcion de Proyecto
-
-Proyecto de simulación de blockchain
+# TP final Técnicas y Herramientas de Software: Proyecto de simulación de blockchain
 
 Integrantes del grupo
 ---------------------
@@ -25,9 +21,16 @@ Comando para obtener cobertura de tests
 - npm run testCoverage
 
 Documentación
-
+--------------
 Diagrama de clases
 
 ![alt text](https://i.ibb.co/BykPGCj/diagrama2.png)
+
+
+Decisiones de diseño
+
+
+Patrones de diseño utilizados
+
 
 
