@@ -4,6 +4,13 @@ Descripcion de Proyecto
 
 Proyecto de simulación de blockchain
 
+Integrantes del grupo
+---------------------
+- Julieta Screpnik   julietascrepnik@gmail.com
+- Jeronimo Sola      cuchujero@hotmail.com
+- Raul Sanchez       fueguino84@gmail.com
+
+
 Comandos para correr el proyecto
 
 - npm install

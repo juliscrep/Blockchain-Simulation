@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 class Holder{
 
     constructor(name,email,password){
-        this.id = uuidv4();
+        this.identifier = uuidv4();
         this.name=name;
         this.email=email;
         this.password=password;
