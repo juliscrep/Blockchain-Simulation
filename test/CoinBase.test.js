@@ -62,5 +62,10 @@ describe('tests de clase CoinBase', () => {
     hashString = coinbaseObjectTest2.getIdentifier() + coinbaseObjectTest2.tkn + coinbaseObjectTest2.out;
     expect(coinbaseObjectTest2.hash).toEqual(hasherSHA256ObjectTest1.generateHash(hashString));
   });
-  
+
+  test('Obtener información del objeto CoinBase', () => {
+    expect(coinbaseObjectTest1.getTransaction().length).toBeGreaterThan(41);   
+    expect(coinbaseObjectTest2.getTransaction().length).toBeGreaterThan(41);   
+  });
+
 });

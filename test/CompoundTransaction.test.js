@@ -60,6 +60,18 @@ describe('tests de clase CompoundTransaction', () => {
     expect(tmpCompoundTransaction2.level).toEqual(1);
   });
 
+  test("incorporación de transacciones simples en árbol de transacciones compuestas", () => {
+    let tmpCompoundTransaction1 = new CompoundTransaction();
+    let tmpCompoundTransaction2 = new CompoundTransaction();
+
+    tmpCompoundTransaction1.addTransaction(transactionObjectTest1);
+    tmpCompoundTransaction1.addTransaction(tmpCompoundTransaction2);
+    tmpCompoundTransaction2.addTransaction(coinbaseObjectTest1);
+    tmpCompoundTransaction2.addTransaction(transactionObjectTest2);
+    tmpCompoundTransaction2.addTransaction(coinbaseObjectTest2);
+    tmpCompoundTransaction1.addTransaction(transactionObjectTest3);
+  });
+
   test("Espero un error al agregar más de 3 transacciones en CompoundTransaction", () => {
     expect(() => {
         compoundTransaction1.addTransaction(coinbaseObjectTest1);

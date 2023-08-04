@@ -9,9 +9,4 @@ describe('Tests de clase TransactionAbstract', () => {
     expect(() => new TransactionAbstract()).toThrow(/TransactionAbstract is an abstract class/);
   });
   
-  test('No se permite instanciar el metodo de una clase abstracta de forma directa', () => {
-    expect(() => new TransactionAbstract().getIdBlockAssociate()).toThrow(/TransactionAbstract is an abstract class/);
-  });
-
-  
 });

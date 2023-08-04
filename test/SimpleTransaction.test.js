@@ -94,5 +94,12 @@ describe('tests de clase SimpleTransaction', () => {
     hashString = transactionObjectTest4.getIdentifier() + transactionObjectTest4.in + transactionObjectTest4.out;
     expect(transactionObjectTest4.hash).toEqual(hasherSHA256ObjectTest1.generateHash(hashString));
   });
-  
+
+  test('Obtener información del objeto SimpleTransaction', () => {
+    expect(transactionObjectTest1.getTransaction().length).toBeGreaterThan(49);
+    expect(transactionObjectTest2.getTransaction().length).toBeGreaterThan(49);
+    expect(transactionObjectTest3.getTransaction().length).toBeGreaterThan(49);
+    expect(transactionObjectTest4.getTransaction().length).toBeGreaterThan(49);
+  });
+
 });
