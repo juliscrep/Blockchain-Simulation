@@ -33,6 +33,6 @@ console.log('T2: ' + trans2.getTransaction());
 
 
 data = 'hola mundo1';
-hashedData = hasher.hash(data);
+hashedData = hasher.generateHash(data);
 
 console.log(hashedData);

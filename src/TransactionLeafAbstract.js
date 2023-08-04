@@ -16,7 +16,7 @@ class TransactionLeafAbstract extends TransactionAbstract {
     }
 
     changeHashMethod(hashMethod) {
-        hasher = hashMethod;
+        this.hasher = hashMethod;
     }
     
     getIdentifier() {

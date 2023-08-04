@@ -8,9 +8,9 @@ class CoinBase extends TransactionLeafAbstract {
         this.generateHash();
     }
 
-    generateHash() {
+    generateTransactionHash() {
         let hashString = this.getIdentifier() + this.tkn + this.out;
-        this.hash = this.hasher.hash(hashString);
+        this.hash = this.hasher.generateHash(hashString);
     }
 
     changeHashMethod(hashMethod) {

@@ -2,6 +2,19 @@
 
 Descripcion de Proyecto
 
+Proyecto de simulación de blockchain
+
+Comandos para correr el proyecto
+
+- npm install
+- npm start
+
+Comando para correr tests
+
+- npm run test
+
+Documentación
+
 Diagrama de clases
 
 ![alt text](https://i.ibb.co/BykPGCj/diagrama2.png)
