@@ -60,9 +60,9 @@ class Block{
         for (let transactionObject of this.transactions){
             taux+=transactionObject.getIdentifier() + "\n";
         }
-        let bchain = "-------------------------------------"  + "\n\n";
+        let bchain = "----------------------------------------------" + "\n\n";
         bchain += "Block: " + this.getId() + "\n" + "timestamp: " + this.getTimestamp() + "\n\n" + "Transactions" + "\n\n" + taux + "\n" + "hash: " + this.getHash() + "\n" + "prev: " + this.getPrevBlockHash() + "\n\n";
-        bchain += "-------------------------------------"  + "\n\n";
+        bchain += "----------------------------------------------"  + "\n\n";
         return bchain;
     }
     

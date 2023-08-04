@@ -16,7 +16,13 @@ class Holder{
     }
 
     getHolderTransactions(){
-        return this.transactions;
+        let transactionsList="List of transactions: ";
+        
+        for (let t of this.transactions){
+            transactionsList+=t.getIdentifier() + " - ";
+        }
+
+        return transactionsList;
     }
     
     addTransactionstoHolder(transaction){

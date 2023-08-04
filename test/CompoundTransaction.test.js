@@ -1,6 +1,3 @@
-const Hashes = require('jshashes');
-const crypto = require('crypto');
-
 let Holder = require('./../src/Holder.js');
 let Token = require('./../src/Token.js');
 let StrategySHA256 = require('./../src/StrategySHA256.js');
