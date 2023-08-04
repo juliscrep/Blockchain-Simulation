@@ -1,4 +1,5 @@
-const TransactionAbstract = require('./TransactionAbstract');
+const TransactionAbstract = require('./TransactionAbstract.js');
+const TransactionLeafAbstract = require('./TransactionLeafAbstract.js');
 
 class CompoundTransaction extends TransactionAbstract{
     constructor(){
@@ -8,9 +9,9 @@ class CompoundTransaction extends TransactionAbstract{
     }
 
     addTransaction(transaction){
-        if (this.transactions.length() >= 3) {
+        if (this.transactions.length >= 3) {
             // las transacciones compuestas solo pueden tener hasta 3 transacciones
-            throw new Error('CompoundTransaction can only contain 3 transactions ');
+            throw new Error('CompoundTransaction can only contain 3 transactions');
         }
         else {
             if (this.level == 0) {
