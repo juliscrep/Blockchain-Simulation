@@ -9,11 +9,12 @@ class TransactionLeafAbstract extends TransactionAbstract {
 
         super();
         this.identifier = "TX-" + uuidv4();
+        this.holder = holder;
         this.out = holder.getDigitalAddress();
         this.hasher = hashMethod;
     }
 
-    generateHash(hashString) {
+    generateTransactionHash(hashString) {
         this.hash = this.hasher.generateHash(hashString);
     }
 
