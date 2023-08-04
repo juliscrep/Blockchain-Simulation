@@ -3,13 +3,13 @@ const { v4: uuidv4 } = require('uuid');
 class Node{
     
     constructor(){
-        this.id = uuidv4();
+        this.identifier = uuidv4();
         this.blockchain=[];
         this.nodesConnected=[];
     }
 
     getId(){
-        return this.id;
+        return this.identifier;
     }
 
     getLastBlock(){
