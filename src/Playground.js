@@ -68,7 +68,6 @@ const block3 = new Block(hasher1, node1, block2);
 
 // Implementaciones
 
-
 try {
     
     node1.addNodeAssociate(node2);

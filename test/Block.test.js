@@ -34,6 +34,7 @@ beforeEach(() => {
     tokenObjectTest2 = new Token();
 
     nodeObjectTest1 = new Node();
+    nodeObjectTest2 = new Node();
   
     hasherSHA256ObjectTest1 = new StrategySHA256();
     hasherMD5ObjectTest1 = new StrategyMD5()
@@ -90,21 +91,62 @@ describe('Tests de clase block', () => {
     test('Ejecutar generación de hash en bloque 1', () => {
         expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));
         expect(blockObjectTest1.generateBlockHash());   
-        expect(blockObjectTest1.getHash()).not.toBeNull();    
+        expect(blockObjectTest1.getHash()).not.toBeNull();   
+        expect(blockObjectTest1.getHash().length).toBeGreaterThan(7);    
     });
 
     test('Ejecutar cierre de bloque en bloque 1', () => {       
         expect(blockObjectTest1.closeBlock());    
         expect(blockObjectTest1.getTimestamp()).not.toBeNull();        
         expect(blockObjectTest1.getHash()).not.toBeNull();        
+        expect(blockObjectTest1.getHash().length).toBeGreaterThan(7);   
+    });
+    
+    test('Cambiar de nodo asociado en bloque 1', () => {
+        expect(blockObjectTest1.setNodeAssociate(nodeObjectTest2));  
+        expect(blockObjectTest1.getNodeAssociate()).toBeInstanceOf(Node); 
+        expect(blockObjectTest1.getNodeAssociate()).not.toEqual(nodeObjectTest1);   
+        expect(blockObjectTest1.broadcast());    
+    });
+
+    test('Obtener cierre de bloque 1 de forma organica', () => {
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));    
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.getTimestamp()).not.toBeNull();        
+        expect(blockObjectTest1.getHash()).not.toBeNull();        
+        expect(blockObjectTest1.getHash().length).toBeGreaterThan(7);   
+    });
+
+    test('Intentar añadir mas de 10 transacciones a bloque 1', () => {
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));    
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));  
+        expect(() => blockObjectTest1.addTransactiontoBlock(transactionObjectTest1)).toThrow('Las transacciones han llegado al limite establecido en este bloque');
     });
 
     test('Obtencion de hash del bloque previo en todos los bloques', () => {
         expect(blockObjectTest1.closeBlock());    
         expect(blockObjectTest1.getPrevBlockHash()).toBeNull();    
-        expect(blockObjectTest2.getPrevBlockHash()).not.toBeNull();   
+        expect(blockObjectTest2.getPrevBlockHash()).not.toBeNull();  
+        expect(blockObjectTest2.getPrevBlockHash().length).toBeGreaterThan(7); 
         expect(blockObjectTest2.closeBlock());     
-        expect(blockObjectTest3.getPrevBlockHash()).not.toBeNull();       
+        expect(blockObjectTest3.getPrevBlockHash()).not.toBeNull();   
+        expect(blockObjectTest3.getPrevBlockHash().length).toBeGreaterThan(7);     
     });
 
     test('Obtencion de nodo asociado a cada bloque', () => {
@@ -114,6 +156,8 @@ describe('Tests de clase block', () => {
     });
 
     test('Obtener información de todos los bloques', () => {
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest1));    
+        expect(blockObjectTest1.addTransactiontoBlock(transactionObjectTest2));    
         expect(blockObjectTest1.getBlockInformation().length).toBeGreaterThan(7);   
         expect(blockObjectTest2.getBlockInformation().length).toBeGreaterThan(7);   
         expect(blockObjectTest3.getBlockInformation().length).toBeGreaterThan(7);   
