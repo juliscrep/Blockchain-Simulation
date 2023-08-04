@@ -33,8 +33,7 @@ class CompoundTransaction extends TransactionAbstract{
         this.level = newLevel;
     }
 
-    getTransaction(){
-    }
+  
 }
 
 module.exports = CompoundTransaction;

@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 class Block{
 
     constructor(hashMethod, node= null, prevBlock = null){
-        this.id= uuidv4();
+        this.identifier= uuidv4();
         this.hash=null;
         this.timestamp=null; 
         this.hasher = hashMethod;
@@ -13,7 +13,7 @@ class Block{
     }
      
     getId(){
-        return this.id;
+        return this.identifier;
     }
 
     getTimestamp(){
