@@ -13,7 +13,7 @@ class TransactionLeafAbstract extends TransactionAbstract {
         this.hasher = hashMethod;
     }
 
-    generateHash(hashString) {
+    generateTransactionHash(hashString) {
         this.hash = this.hasher.generateHash(hashString);
     }
 
