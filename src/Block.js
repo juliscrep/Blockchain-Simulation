@@ -72,14 +72,9 @@ class Block{
     }
 
     closeBlock(){
-        try{
              this.timestamp= Math.floor(Date.now() / 1000);
              this.generateBlockHash();
-             this.broadcast();
-        }
-        catch{
-            throw new Error('Error al intentar cerrar el bloque');
-        }               
+             this.broadcast();    
     }
 
     addTransactiontoBlock(transaction){

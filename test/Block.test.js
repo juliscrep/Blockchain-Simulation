@@ -45,6 +45,7 @@ beforeEach(() => {
     blockObjectTest1 = new Block(hasherSHA256ObjectTest1, nodeObjectTest1);
     blockObjectTest2 = new Block(hasherSHA256ObjectTest1, nodeObjectTest1, blockObjectTest1);
     blockObjectTest3 = new Block(hasherSHA256ObjectTest1, nodeObjectTest1, blockObjectTest2);
+    blockObjectTest4 = new Block(hasherSHA256ObjectTest1);
 
 });
 
@@ -69,6 +70,13 @@ describe('Tests de clase block', () => {
         expect(blockObjectTest3.getId()).not.toEqual('');
         expect(blockObjectTest3.getId().length).toBeGreaterThan(7);
         expect(blockObjectTest3.getId()).toHaveLength(36);
+    });
+
+    test('Creacion de bloque 4 de ejemplo exitosa', () => {
+        expect(blockObjectTest4.getId()).not.toBeNull();      
+        expect(blockObjectTest4.getId()).not.toEqual('');
+        expect(blockObjectTest4.getId().length).toBeGreaterThan(7);
+        expect(blockObjectTest4.getId()).toHaveLength(36);
     });
 
     test('Obtencion de metodo de hash en todos los bloques', () => {
